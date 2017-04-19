@@ -1,6 +1,7 @@
 #include<iostream>
 #define SEARCH_TRUE 0x1
 #define DELETE_TRUE 0x2
+#define UPDATE_TRUE 0x3
 using namespace std;
 struct node
 {
@@ -50,7 +51,7 @@ void search(int x)
 {
     if(!start) cout << "No Node" << endl;
     int count = 1;
-    bool flag;
+    int flag = 0;
     node* t = start;
     while(t)
     {   
@@ -62,11 +63,7 @@ void search(int x)
         count++;
         t = t->next;
     }
-    if( flag ^ SEARCH_TRUE )
-    {
-        cout << "No data in node: " << x << endl;
-    }
-
+    if( flag ^ SEARCH_TRUE ) cout << "No data in node: " << x << endl;
 }
 
 void remove(int x)
@@ -74,6 +71,7 @@ void remove(int x)
     if(!start) cout << "No Node" << endl;
     node* t = start;
     node* p;
+    int flag = 0;
     while(t)
     {   
         if(t->val == x)
@@ -82,29 +80,33 @@ void remove(int x)
             t = NULL;
             delete t;
             t = p->next;
+            flag = DELETE_TRUE;
             continue;
         }
         p=t;
         t=t->next;
     }
+    if( flag ^ DELETE_TRUE ) cout << "No data in node: " << x << endl;   
 }
 
 void update(int _x, int x)
 {
     if(!start) cout << "No Node" << endl;
     int count = 1;
+    int flag = 0;
     node* t = start;
     while(t)
     {   
         if(t->val == _x)
         {
             t->val = x;
+            flag = UPDATE_TRUE;
             return ;
         }
         count++;
         t = t->next;
     }
-    cout << "No data in node: " << _x << endl;   
+    if( flag ^ UPDATE_TRUE ) cout << "No data in node: " << _x << endl;   
 }
 
 int main()
