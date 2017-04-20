@@ -8,7 +8,7 @@ struct node
     int val;
     node* next;
 };
-
+typedef struct node node;
 node* start;
 
 void insert(int x)
