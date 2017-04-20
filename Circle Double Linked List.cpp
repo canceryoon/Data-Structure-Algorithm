@@ -1,8 +1,4 @@
 #include<iostream>
-#define SELECT_TRUE 0x1
-#define DELETE_TRUE 0x2
-#define UPDATE_TRUE 0x3
-
 using namespace std;
 
 struct node
@@ -176,7 +172,7 @@ void updateNode(int offset, int val)
 		cout << "No create List." << endl;
 		return;
 	}
-		
+
 	do
 	{
 		if( cnt++ == offset)
