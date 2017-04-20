@@ -1,4 +1,8 @@
 #include<iostream>
+#define SELECT_TRUE 0x1
+#define DELETE_TRUE 0x2
+#define UPDATE_TRUE 0x3
+
 using namespace std;
 
 struct node
@@ -43,6 +47,11 @@ void insertNode(int offset, node* inNode)
 {
 	node* node = HEAD;
 	int cnt=1;
+	if(!HEAD)
+	{
+		cout << "No create List." << endl;
+		return;
+	}
 	while(node->next != HEAD)
 	{
 		if( cnt == offset )
@@ -65,6 +74,11 @@ void insertNode(int offset, node* inNode)
 void showAllNode()
 {
 	node* node = HEAD;
+	if(!HEAD)
+	{
+		cout << "No create Node." << endl;
+		return;
+	}
 	while(1)
 	{
 		cout << node->prev->val << " " << node->val << " " << node->next->val << endl;
@@ -73,10 +87,27 @@ void showAllNode()
 	}
 }
 
-/* void showNode(int offset)
-{
+void showNode(int offset)
+{	
+	node* head = HEAD;
+	int cnt = 1;
+	if(!HEAD)
+	{
+		cout << "No create List." << endl;
+		return;
+	}
 
-} */
+	do
+	{
+		if( cnt++ == offset)
+		{
+			cout << offset << " offset node value : " << head->val << endl;
+			return ;
+		}
+		head = head->next;
+	}while( head != HEAD);
+	cout << "No " << offset << " Node." << endl;
+} 
 
 void deleteALLNode()
 {
@@ -89,13 +120,14 @@ void deleteALLNode()
 		return;
 	}
 	
-	while(head->next != head)
+	while(head)
 	{
 		if(head->next == head)
 		{
 			cout << "Delete value: " << head->val << endl;
 			delete head;
-			return;
+			head = NULL;
+			break;
 		}		
 		cout << "Delete value: " << head->val << endl;
 		head->prev->next = head->next;
@@ -103,21 +135,66 @@ void deleteALLNode()
 		tmp = head->next;
 		
 		delete head;
+		head = NULL;
 		head = tmp;
 	}
 }
 
-/* void deleteNode(int offset)
+void deleteNode(int offset)
 {
+	node* head = HEAD;
+	node* tmp;
+	int cnt = 1;
+	if(!HEAD)
+	{
+		cout << "No create List." << endl;
+		return;
+	}	
 
-} */
+	do
+	{
+		if( cnt++ == offset)
+		{
+			head->next->prev = head->prev;
+			head->prev->next = head->next;
+
+			delete head;
+			head = NULL;
+			return;
+		}
+		head = head->next;
+	}while( head != HEAD);
+	cout << "No create " << offset << " node." << endl;
+} 
+
+void updateNode(int offset, int val)
+{
+	node* head = HEAD;
+	int cnt = 1;
+	if(!HEAD)
+	{
+		cout << "No create List." << endl;
+		return;
+	}
+		
+	do
+	{
+		if( cnt++ == offset)
+		{
+			head->val = val;
+			return;
+		}
+		head = head->next;
+	}while( head != HEAD);
+	cout << "No " << offset << " Node." << endl;
+}
 
 int main()
 {
 	int x, val, offset;
 	do
 	{
-		cout << endl << "1. Insert" << endl << "2 InsertNode" << endl << "3. ShowAll" << endl << "4 END" << endl;
+		cout << endl << "1. Insert" << endl << "2. InsertNode" << endl << "3. ShowNode" << endl << "4. ShowAll" << endl << "5. DeleteNode" << endl << "6 UpdateNode" << endl << "7. ENd" << endl;
 		cin >> x;
 		switch(x)
 		{
@@ -127,17 +204,33 @@ int main()
 				appendNode(createNode(val));
 				break;
 			case 2: 
-				cout << "Input offset: "; 
+				cout << "Input Insert offset: "; 
 				cin >> offset;
 				cout << "Input Num: ";
 				cin >> val;
 				insertNode(offset, createNode(val));
 				break;
 			case 3:
+				cout << "Input Select offset" ;
+				cin >> offset;
+				showNode(offset);
+				break;
+			case 4:
 				showAllNode();
 				break;
+			case 5:
+				cout << "Input Delete Offset";
+				cin >> offset;
+				deleteNode(offset);
+				break;
+			case 6:
+				cout << "Input Update Offset";
+				cin >> offset;
+				cout << "Input Update NUm";
+				cin >> val;
+				updateNode(offset, val);
 		}
-	}while(x != 4);
+	}while(x != 7);
 	cout << "END:" << endl;
 	deleteALLNode();
 	return 1;
