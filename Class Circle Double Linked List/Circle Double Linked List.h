@@ -3,14 +3,6 @@
 class Node;
 class CDList;
 
-static bool hasList(Node* head)
-{
-	if(head) return true;
-
-	std::cout << "No create node." << std::endl;
-	return false;
-}
-
 class Node
 {
 public:
@@ -62,17 +54,29 @@ public:
 	void deleteOffset(int offset);
 	void deleteData(int _val);
 	int getNodeCnt();
+
+private:
+	bool hasList(int nodeCnt);
 };
+
+bool CDList::hasList(int nodeCnt)
+{
+	if(nodeCnt > 0) return true;
+
+	std::cout << "No create node." << std::endl;
+	return false;
+}
 
 void CDList::insert(Node* node)
 {
 	if(head)
 	{
-		node->next = head;
-		node->prev = head->prev;
+		Node* HEAD = head;
+		node->next = HEAD;
+		node->prev = HEAD->prev;
 
-		head->prev->next = node;
-		head->prev= node;
+		HEAD->prev->next = node;
+		HEAD->prev= node;
 	}
 	else
 	{
@@ -85,7 +89,7 @@ void CDList::insert(Node* node)
 
 void CDList::insertOffset(int offset, Node* node)
 {
-	if(hasList(head))
+	if(hasList(nodeCnt))
 	{
 		int cnt = 1;
 		Node* HEAD = head;
@@ -108,8 +112,9 @@ void CDList::insertOffset(int offset, Node* node)
 
 void CDList::select()
 {
-	if(hasList(head))
+	if(hasList(nodeCnt))
 	{
+		std::cout << "In select" << std::endl;
 		Node* HEAD = head;
 		do
 		{
@@ -121,7 +126,7 @@ void CDList::select()
 
 void CDList::selectOffset(int offset)
 {
-	if(hasList(head))
+	if(hasList(nodeCnt))
 	{
 		if( offset > nodeCnt )
 		{
@@ -143,7 +148,7 @@ void CDList::selectOffset(int offset)
 
 void CDList::selectData(int _val)
 {
-	if(hasList(head))
+	if(hasList(nodeCnt))
 	{
 		int flag;
 		int cnt = 1;
@@ -164,7 +169,7 @@ void CDList::selectData(int _val)
 
 void CDList::deleteAllNode()
 {
-	if(hasList(head))
+	if(hasList(nodeCnt))
 	{
 		Node* tmp = head;
 		int cnt = 1;
@@ -184,17 +189,21 @@ void CDList::deleteAllNode()
 
 void CDList::deleteOffset(int offset)
 {
-	if(hasList(head))
+	if(hasList(nodeCnt))
 	{
 		int cnt = 1;
 		Node* HEAD = head;
+		Node* tmp = head->next;
 		if( offset <= nodeCnt ) 
 		{
-			while( cnt++ != offset ) HEAD = HEAD->next;
+			while( cnt != offset ) HEAD = HEAD->next;
 			HEAD->prev->next = HEAD->next;
 			HEAD->next->prev = HEAD->prev;
+			nodeCnt--;
+			if(HEAD == head) head = tmp;
 
 			delete HEAD;
+			HEAD = NULL;
 		}
 		else std::cout << "Just Node has " << nodeCnt << " nodes." << std::endl;
 	}
@@ -202,23 +211,30 @@ void CDList::deleteOffset(int offset)
 
 void CDList::deleteData(int _val)
 {
-	if(hasList(head))
+	if(hasList(nodeCnt))
 	{
 		int flag;
-		Node* tmp;
+		int cnt=1;
+		Node* tmp ;
 		Node* HEAD = head;
-		do
+		while(cnt++ <= nodeCnt)
 		{
 			tmp = HEAD->next;
-			if(HEAD->val == _val)
+			if( HEAD->val == _val )
 			{
-				HEAD->prev->next = HEAD->next;
 				HEAD->next->prev = HEAD->prev;
+				HEAD->prev->next = HEAD->next;
+				nodeCnt--;
 				delete HEAD;
 				flag = DELETE_TRUE;
+				if( HEAD == head )
+				{
+					head = tmp;
+				}
 			}
 			HEAD = tmp;
-		}while(head != HEAD);
+		}
+		
 		if( flag ^ DELETE_TRUE ) std::cout << "Data "<< _val <<" is not in nodes." << std::endl;
 	}
 }
