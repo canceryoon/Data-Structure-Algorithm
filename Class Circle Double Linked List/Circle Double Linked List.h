@@ -191,21 +191,28 @@ void CDList::deleteOffset(int offset)
 {
 	if(hasList(nodeCnt))
 	{
-		int cnt = 1;
+		int flag;
+		int cnt=1;
+		Node* tmp ;
 		Node* HEAD = head;
-		Node* tmp = head->next;
-		if( offset <= nodeCnt ) 
+		while(cnt <= nodeCnt)
 		{
-			while( cnt != offset ) HEAD = HEAD->next;
-			HEAD->prev->next = HEAD->next;
-			HEAD->next->prev = HEAD->prev;
-			nodeCnt--;
-			if(HEAD == head) head = tmp;
-
-			delete HEAD;
-			HEAD = NULL;
+			if( offset == cnt++ )
+			{
+				HEAD->next->prev = HEAD->prev;
+				HEAD->prev->next = HEAD->next;
+				nodeCnt--;
+				delete HEAD;
+				flag = DELETE_TRUE;
+				if( HEAD == head )
+				{
+					head = tmp;
+				}
+				break;
+			}
+			HEAD = HEAD->next;
 		}
-		else std::cout << "Just Node has " << nodeCnt << " nodes." << std::endl;
+		if( flag ^ DELETE_TRUE ) std::cout << "Just Node has " << nodeCnt << " nodes." << std::endl;
 	}
 }
 
