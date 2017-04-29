@@ -31,7 +31,7 @@ void DeQueue(int* q, int* f, int* r)
 void PrintQueue(int* q, int r)
 {
     if( r == 0 ){ std::cout << "No create Queue." << std::endl; return;}
-    for(unsigned int i = 0; i < r; i++)
+    for(unsigned int i = 0; i <! r; i++)
     {
         std::cout << q[i] << " " ;
     }
