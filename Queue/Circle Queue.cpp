@@ -16,7 +16,7 @@ public:
     CircleQueue(int _size)
     {
         size = _size;
-        cnt = 0;
+        cnt = 1;
         front = 0;
         rear = 0;
         node = (Node*)malloc(sizeof(Node)* (size+1));
@@ -43,7 +43,8 @@ void CircleQueue::DestroyQueue()
 }
 void CircleQueue::InQueue( int _data )
 {
-    if( cnt == size){ cout << "Full circle queue" << endl; return ;}
+    cout << cnt << " " << size << endl;
+    if( cnt == size+1 ){ cout << "Full circle queue" << endl; return ;}
     int pos = 0;
     if( rear == size )
     {
@@ -60,7 +61,7 @@ void CircleQueue::InQueue( int _data )
 
 int CircleQueue::DeQueue()
 {
-    if( cnt == 0 ){ cout << "No data in circle queue" << endl; return -1;}
+    if( cnt-1 == 0 ){ cout << "No data in circle queue" << endl; return -1;}
     int pos = front;
     if( front == size ) front = 0;
     else front++;
@@ -84,15 +85,17 @@ void CircleQueue::PrintQueue()
 {
     unsigned int i;
     cout << "Print Queue" << endl;
+    cout << "[" ;
     if( front > rear )
     {
-        for( i = front; i < size ; i++ ) cout << node[i].data << " ";
-        for( i = 0; i < rear ; i++ ) cout << node[i].data << " " << endl;
+        for( i = front; i <= size ; i++ ) cout << node[i].data << " ";
+        for( i = 0; i < rear ; i++ ) cout << node[i].data << " " ;
     }
     else
     {
-        for( i = front ; i < rear; i++) cout << node[i].data << " " << endl;
+        for( i = front ; i < rear; i++) cout << node[i].data << " " ;
     }
+    cout << "]" << endl;
 }
 
 int main()
