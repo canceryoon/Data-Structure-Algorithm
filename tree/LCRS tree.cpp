@@ -54,6 +54,22 @@ void LCRS_PrintTree(LCRSNode* root, int depth)
     if( root->rightSibling != NULL ) LCRS_PrintTree(root->rightSibling, depth);
 }
 
+void LCRS_PrintSibling(LCRSNode* root)
+{
+    std::cout << root->data << " " << std::endl;
+    if( root->rightSibling != NULL ) LCRS_PrintSibling(root->rightSibling);
+}
+
+void LCRS_PrintNLevelTree(LCRSNode* root, int level, int depth)
+{
+    if( level == depth )
+    {
+        LCRS_PrintSibling(root);
+        return ;
+    }
+    if( root->leftChiled != NULL ) LCRS_PrintNLevelTree(root->leftChiled, level, depth+1);
+}
+
 int main()
 {
     LCRSNode* head = LCRS_CreateNode('A');
@@ -76,6 +92,9 @@ int main()
        LCRS_AddChildNode(f, g);
         LCRS_AddChildNode(g, h);
     
+    LCRS_PrintNLevelTree(head, 3, 1);
+    std::cout << " " << std::endl;
+
     LCRS_PrintTree(head, 0); // 0 is print depth
     LCRS_Destorytree(head);
     return 1;   
