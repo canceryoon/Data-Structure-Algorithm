@@ -14,8 +14,9 @@ public:
     Node* getHead();
     void setHead(Node* _node);
     void insertTree(Node* _node);
-    Node* findaddrTree(int level, int addr, int depth);
-    void printTree();
+    
+    void printTree(int depth);
+    
 
 };
 #endif
