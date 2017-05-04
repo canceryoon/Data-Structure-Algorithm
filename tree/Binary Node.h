@@ -26,7 +26,7 @@ public:
     void setRC(Node* rNode);
     Node* getLC();
     Node* getRC();
-    void findaddrNode(int level, int addr, int depth, Node* inode);
+    void insertNode(int level, int addr, int depth, Node* inode);
     void printNode(int depth);
 };
 #endif
