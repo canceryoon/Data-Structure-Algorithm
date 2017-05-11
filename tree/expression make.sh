@@ -1,2 +1,2 @@
-g++ -c Expression Tree.cpp
-g++ -c Expression Tree Main.cpp
+g++ -c Expression\ Tree.cpp
+g++ -o expressTree Expression\ Tree\ Main.cpp Expression\ Tree.o
