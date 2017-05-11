@@ -9,12 +9,12 @@ ETNode* ET_CreateNode( char _data )
     return nNode;
 }
 
-void ET_DestoryNode( ET_Node* dNode )
+void ET_DestoryNode( ETNode* dNode )
 {
     free(dNode);
 }
 
-void ET_DestoryTree( ET_Node* head )
+void ET_DestoryTree( ETNode* head )
 {
     if(head)
     {   
