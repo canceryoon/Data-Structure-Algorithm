@@ -80,7 +80,7 @@ void ET_BuildExpressionTree( char* postFixNode, ETNode** node )
     }
 }
 
-double ET_Evaluate( ETNode* tree );
+double ET_Evaluate( ETNode* tree )
 {
     char tmp[2];
 
