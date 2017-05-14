@@ -11,6 +11,6 @@ struct DisjointSet{
 void DS_UnionSet( DisjointSet* set1, DisjointSet set2 );
 DisjointSet* DS_FindSet( DisjointSet* set );
 DisjointSet* DS_MakeSet( void* newData );
-void DS_DestorySet( DisjointSet* set );
+void DS_DestroySet( DisjointSet* set );
 
 #endif
