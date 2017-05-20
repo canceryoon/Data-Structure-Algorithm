@@ -10,7 +10,7 @@ void bubbleSort(int data[], int _len)
     int i,j;
     for(i=0; i < len-1; i++)
     {
-         for(j=0; j < (len-(i+1)); j++)
+         for(j=0; j < (len-i); j++)
         {
             if(data[j] > data[j+1])
             {
