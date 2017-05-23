@@ -7,23 +7,28 @@ void swap(int* a, int* b)
 {
     int tmp = *a;
     *a = *b;
-    *b = *a;
+    *b = tmp;
 }
 
 int partition(int* arr, int l, int r)
 {
-    int f = l++;
+    int len  = r;
+    int f = l;
     int p = arr[f];
-
+    l++;
     while(l <= r)
     {
-        while(arr[l++] <= p);
-        while(arr[r--] > p);
+        while(arr[l] <= p)
+            l++;
+        while(arr[r] > p)
+            r--;
 
-        if(l < r) r--;
+        //if(l < r) r--;  ?? why quick sort to this code?
 
-        if(l < r) swap(&arr[l], &arr[r]);
-        else break;
+        if(l < r) 
+            swap(&arr[l], &arr[r]);
+        else 
+            break;
     }
     
     swap(&arr[f], &arr[r]);
@@ -35,7 +40,6 @@ void quicksort(int* arr, int l, int r)
     if( l < r )
     {
         int idx = partition(arr, l, r);
-        std::cout << "after partition " << idx << std::endl;
         quicksort(arr, l, idx-1);
         quicksort(arr, idx+1, r);
     }
