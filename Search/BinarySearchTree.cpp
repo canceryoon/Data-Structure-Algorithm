@@ -84,6 +84,70 @@ void insertNode(NODE* tree, NODE* child)
 
 NODE* removeNode(NODE* tree, NODE* parent, int rdata)
 {
+    NODE* rm = NULL;
+
+    if(tree == NULL)
+        return NULL;
+
+    if(tree->data > rdata)
+        rm = removeNode(tree->left, tree, rdata);
+    else if(tree->data < rdata)
+        rm = removeNode(tree->right, tree, rdata);
+
+    else
+    {
+        rm = tree;
+        if(tree->left == NULL && tree->right == NULL)
+        {
+            if( parent && parent->left == tree )
+                parent->left = NULL;
+            else 
+                parent->right = NULL;
+        }
+        else
+        {
+            if(tree->left != NULL && tree->right != NULL)
+            {
+                NODE* minNode = searchMinNode(tree->left);
+                minNode = BST_removeNode(tree, NULL, minNode->data);
+                tree->data = minNode->data;
+            }
+            else
+            {
+                if(tree->left != NULL)
+                {
+                    if(parent->left == tree)
+                        parent->left = tree->left;
+                    else 
+                        parent->right = tree->left;
+                }
+                else if(tree->right != NULL)
+                {
+                    if(parent->right == tree)
+                        parent->right = tree->right;
+                    else
+                        parent->left = tree->right;
+                }   
+            }
+        }
+
+
+    }
     
-    return tree;
+    return rm;
+}
+
+void printNode(NODE* tree, int depth)
+{
+    if(tree == NULL)
+        return ;
+
+    printNode(tree->left, depth+1;);
+
+    for(unsigned int i = 0; i<depth; i++)
+        std::cout << " ";
+        
+    std::cout << tree->data << std::endl;
+
+    printNode(tree->right, depth+1;);
 }
