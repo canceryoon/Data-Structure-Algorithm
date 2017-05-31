@@ -2,7 +2,7 @@
 
 NODE* createNode(int _data)
 {
-    NODE* node = (NODE*)malloc(sizeof(NODE());
+    NODE* node = (NODE*)malloc(sizeof(NODE));
     node->data = _data;
     node->right = NULL;
     node->left = NULL;
@@ -12,7 +12,7 @@ NODE* createNode(int _data)
 
 void destroyNode(NODE* rnode)
 {
-    free(node);
+    free(rnode);
 }
 
 void destroyTree(NODE* tree)
@@ -37,8 +37,8 @@ NODE* searchNode(NODE* tree, int target)
         return tree;
     
     if(tree->data < target)
-        return searchNode(tree->left);
-    else return searchNode(tree->right);
+        return searchNode(tree->left, target);
+    else return searchNode(tree->right, target);
 
     std::cout << "No data found: " << target << std::endl;
     return NULL;
@@ -63,7 +63,7 @@ void insertNode(NODE* tree, NODE* child)
     if(tree == NULL)
     {
         std::cout << "Input Tree is NULL" << std::endl;
-        return NULL;
+        return ;
     }
 
     if(tree->data > child->data)
@@ -109,7 +109,7 @@ NODE* removeNode(NODE* tree, NODE* parent, int rdata)
             if(tree->left != NULL && tree->right != NULL)
             {
                 NODE* minNode = searchMinNode(tree->left);
-                minNode = BST_removeNode(tree, NULL, minNode->data);
+                minNode = removeNode(tree, NULL, minNode->data);
                 tree->data = minNode->data;
             }
             else
@@ -142,12 +142,12 @@ void printNode(NODE* tree, int depth)
     if(tree == NULL)
         return ;
 
-    printNode(tree->left, depth+1;);
+    printNode(tree->left, depth+1);
 
     for(unsigned int i = 0; i<depth; i++)
         std::cout << " ";
-        
+
     std::cout << tree->data << std::endl;
 
-    printNode(tree->right, depth+1;);
+    printNode(tree->right, depth+1);
 }
