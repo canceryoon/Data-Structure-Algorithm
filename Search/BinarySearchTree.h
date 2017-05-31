@@ -13,7 +13,7 @@ NODE* createNode(int _data);
 void destroyNode(NODE* rnode);
 void destroyTree(NODE* tree);
 
-void printNode(NODE* tree);
+void printNode(NODE* tree, int depth);
 void insertNode(NODE* tree, NODE* child);
 NODE* removeNode(NODE* tree, NODE* parent, int rdata);
 NODE* searchNode(NODE* tree, int target);
