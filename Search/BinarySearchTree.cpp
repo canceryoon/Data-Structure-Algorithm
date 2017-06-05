@@ -37,8 +37,8 @@ NODE* searchNode(NODE* tree, int target)
         return tree;
     
     if(tree->data < target)
-        return searchNode(tree->left, target);
-    else return searchNode(tree->right, target);
+        return searchNode(tree->right, target);
+    else return searchNode(tree->left, target);
 
     std::cout << "No data found: " << target << std::endl;
     return NULL;
