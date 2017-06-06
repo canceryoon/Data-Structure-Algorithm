@@ -107,3 +107,111 @@ void rotateLeft(RBNode** root, RBNode* parent)
     rightchild->left = parent;
     parent->parent = rightchild
 }
+
+/**
+* 1. Find node seat.
+* 2. Set Color default: Red.
+* 3. Check and repair Red Black Tree Rules.
+**/
+void insertNode(RBNode** tree, RBNode* nNode)
+{
+    insertNodeHelper(tree, nNode);
+    
+    nNode->color = RED;
+    nNdoe->right = Nil;
+    nNdoe->left = Nil;
+
+    rebuildAfterInsert(tree, nNode);
+}
+
+// compare Insert node data and tree datas, find a node seat.
+void insertNodeHelper(RBNode** tree, RBNode* nNode)
+{
+    if((*tree) == NULL)
+        (*tree) = nNode;
+    
+    if((*tree)->data < nNode->data)
+    {
+        if((*tree)->right != Nil)
+        {
+            (*tree)->right = nNode;
+            nNode->parent = (*tree);
+        }
+        else
+            insertNodeHelper(&(*tree)->right, nNode);
+    }
+    else
+    {
+        if((*tree)->left != Nil)
+        {
+            (*tree)->left = nNode;
+            nNode->parent = (*tree);
+        }
+        else
+            insertNodeHelper(&(*tree)->left, nNode);
+    }
+}
+
+// Check and Repair Red Black Tree Rules.
+void rebuildAfterInsert(NODE** tree, NODE* x)
+{
+
+    while( x != (*tree) && x->parent->color == RED )
+    {
+        if( x->parent == x->parent->parent->left )
+        {
+            NODE* uncle = x->parent->parent->right;
+            
+            if( uncle->color == RED )
+            {
+                x->parent->color = BLACK;
+                uncle->color = BLACK;
+                
+                x->parent->parent->color = RED;
+                x = x->parent->parent;
+            }
+            else
+            {
+                if( x == x->parent->right )
+                {
+                    x = x->parent;
+                    RBT_rotateLeft(tree, x);
+                }
+                
+                x->parent->color = BLACK;
+                x->parent->parent->color = RED;
+                
+                RBT_rotateRight(tree, x->parent->parent);
+
+            }
+        }
+        else
+        {
+            NODE* uncle = x->parent->parent->left;
+            
+            if( uncle->color == RED )
+            {
+                uncle->color = BLACK;
+
+                x->parent->color = BLACK;
+                x->parent->parent->color = RED;
+                x = x->parent->parent;
+            }
+            else
+            {
+                if( x == x->parent->left )
+                {
+                    x = x->parent;
+                    RBT_rotateRight(tree, x);
+                }
+
+                x->parent->color = BLACK;
+                x->parent->parent->color = RED;
+
+                RBT_rotateLeft(tree, x->parent->parent);
+            }
+        }
+    }
+
+    (*tree)->color = BLACK;
+}
