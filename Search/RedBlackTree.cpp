@@ -215,3 +215,127 @@ void rebuildAfterInsert(NODE** tree, NODE* x)
 
     (*tree)->color = BLACK;
 }
+
+RBNode* removeNode(RBNode** tree, int data)
+{
+    NODE* removed = NULL;
+    NODE* successor = NULL;
+    NODE* target = searchRBNode( (*root), data );
+
+    if(target == NULL)
+        return NULL;
+    
+    if( target->left == Nil || target->right == Nil )
+        removed = target;
+    else
+    {
+        removed = searchMinRBNode( target->right );
+        target->data = removed->data;
+    }
+
+    if(removed->left != Nil)
+        successor = removed->left;
+    else
+        successor = removed->right;
+
+    successor->parent = removed->parent;
+
+    if(removed->parent == NULL)
+        (*root) = successor;
+    else
+    {
+        if(removed == removed->parent->left)
+            removed->parent->left = successor;
+        else
+            removed->parent->right = successor;
+    }
+
+    if(removed->color == BLACK)
+        RBT_rebuildAfterRemove(root, successor);
+    
+    return removed;
+}
+
+void rebuildAfterRemove(RBNode** tree, RBNode* x)
+{
+    NODE* sibling = NULL;
+    
+    while( x->parent != NULL && x->color == BLACK )
+    {
+        if(x == x->parent->left)
+        {
+            sibling = x->parent->right;
+
+            if(sibling->color == RED)
+            {
+                sibling->color = BLACK;
+                x->parent->color = RED;
+                RBT_rotateLeft(root, x->parent);
+                sibling = x->parent->right;
+            }
+            else
+            {
+                if(sibling->left->color == BLACK && sibling->right->color == BLACK)
+                {
+                    sibling->color = RED;
+                    x = x->parent;
+                }
+                else
+                {
+                    if(sibling->left->color == RED)
+                    {
+                        sibling->left->color = BLACK;
+                        sibling->color = RED;
+
+                        RBT_rotateRight(root,sibling);
+                        sibling = x->parent->right;
+                    }
+
+                    sibling->color = x->parent->color;
+                    x->parent->color = BLACK;
+                    sibling->right->color = BLACK;
+                    RBT_rotateLeft(root, x->parent);
+                    x = (*root);
+
+                }
+            }
+        }
+        else
+        {
+            sibling = x->parent->left;
+            if(sibling->color == RED)
+            {
+                sibling->color = BLACK;
+                x->parent->color = RED;
+                RBT_rotateRight(root, x->parent);
+                sibling = x->parent->left;
+            }
+            else
+            {
+                if(sibling->right->color == BLACK && sibling->left->color == BLACK)
+                {
+                    sibling->color = RED;
+                    x = x->parent;
+                }
+                else
+                {
+                    if(sibling->right->color == RED)
+                    {
+                        sibling->right->color = BLACK;
+                        sibling->color = RED;
+                        RBT_rotateLeft(root, sibling);
+                        sibling = x->parent->left;
+                    }
+
+                    sibling->color = x->parent->color;
+                    x->parent->color = BLACK;
+                    sibling->left->color = BLACK;
+                    RBT_rotateRight(root, x->parent);
+                    x = (*root);
+
+                }
+            }
+        }
+    }
+    x->color = BLACK;
+}
