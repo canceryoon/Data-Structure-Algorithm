@@ -339,3 +339,41 @@ void rebuildAfterRemove(RBNode** tree, RBNode* x)
     }
     x->color = BLACK;
 }
+
+void printTree(RBNode* node, int depth, int blackCount)
+{
+    int i = 0;
+    char c = 'X';
+    int v = -1;
+    char cnt[100];
+
+    if(node == NULL || node == Nil)
+        return;
+
+    if(node->color == BLACK)
+        blackCount++;
+
+    if(node->parent != NULL)
+    {
+        v = node->parent->data;
+
+        if(node->parent->left == node)
+            c = 'L';
+        else
+            c = 'R';
+    }
+
+    for( i = 0 ; i < depth ; i++ )
+        std::cout << " " << std::endl;
+
+    std::cout << node->data << " " << ((node->color == RED)? "RED" : "BLACK") << " " << c << " " << v << " " ;
+
+    if(node->left == Nil && node->right == Nil)
+        std::cout << "------- " << blackCount << std::endl;
+    else
+        std::cout << " " << std::endl;
+   
+    RBT_printTree(node->left, depth+1, blackCount);
+    RBT_printTree(node->right, depth+1, blackCount);
+    
+}
