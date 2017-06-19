@@ -26,14 +26,14 @@ void HEAP::swapNode(int idx1, int idx2)
     memcpy(&node[idx1] , &node[idx2], cpsize);
     memcpy(&node[idx2], tmp, cpsize);
 
-    tree(tmp);
+    free(tmp);
 }
 
 void HEAP::printHeap()
 {
-    for(unsigned int i = 0; i < capacity; i++)
+    for(unsigned int i = 0; i < usedSize; i++)
     {
-        std::cout << node[i].data << " " ;
+        std::cout << node[i].data << " " << std::endl;
     }
 }
 
@@ -60,13 +60,14 @@ void HEAP::insertNode(int _data)
     usedSize++;
 }
 
-NODE* deleteMinNode()
+int HEAP::deleteMinNode()
 {
     int parent_pos = 0;
     int lpos = 0;
     int rpos = 0;
+    int minData = node[0].data;
 
-    memset(node[0], 0, sizeof(NODE));
+    memset(&node[0], 0, sizeof(NODE));
     usedSize -= 1;
 
     swapNode(0, usedSize);
@@ -99,4 +100,6 @@ NODE* deleteMinNode()
         capacity /= 2;
         node = (NODE*)realloc(node, (sizeof(NODE)*capacity));
     }
+    
+    return minData;
 }

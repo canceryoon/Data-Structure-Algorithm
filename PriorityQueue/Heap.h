@@ -24,7 +24,7 @@ public:
     }
 
     NODE* createNode(int size);
-    NODE* deleteMinNode();
+    int deleteMinNode();
     void insertNode(int data);
     void printHeap();
 
