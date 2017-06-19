@@ -1,12 +1,12 @@
 #ifndef READ_BLACK_TREE_H
 #define READ_BLACK_TREE_H
 
-enum {
-    READ,
+typedef enum {
+    RED,
     BLACK
-} Color;
+}Color;
 
-struct RBTree{
+typedef struct RBTree{
     int data;
 
     RBTree* left;
@@ -25,7 +25,7 @@ RBNode* removeNode(RBNode** tree, int data);
 
 void insertNode(RBNode** tree, RBNode* nNode);
 void insertNodeHelper(RBNode** tree, RBNode* nNode);
-void rebuildAfterInsert(RBNode** tree, NODE* x);
+void rebuildAfterInsert(RBNode** tree, RBNode* x);
 void rebuildAfterRemove(RBNode** tree, RBNode* x);
 
 void printTree(RBNode* node, int depth, int blackCount);

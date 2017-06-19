@@ -1,4 +1,4 @@
 rm -f *.o redblacktree 
-g++ -c RedBlackTree.o
-g++ -c RedBlackTree\ Main.o
+g++ -c RedBlackTree.cpp
+g++ -c RedBlackTree\ Main.cpp
 g++ -o redblacktree RedBlackTree.o RedBlackTree\ Main.o

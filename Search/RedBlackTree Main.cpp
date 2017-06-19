@@ -1,7 +1,7 @@
 #include<iostream>
 #include"RedBlackTree.h"
 
-extern RBNode* Nil;
+RBNode* Nil;
 
 int main()
 {
@@ -19,11 +19,11 @@ int main()
         
         std::cout << "Enter number" << std::endl;
         std::cout << " 1. create node  2. remove node  3. search node   4. print tree  5. exit" << std::endl;
-        std::cin > cmd;
+        std::cin >> cmd;
 
         if(cmd < 1 || cmd > 5)
         {
-            std::cout << "Invaild command number." std::endl;
+            std::cout << "Invaild command number." << std::endl;
             continue;
         }
         else if(cmd == 4)
@@ -35,8 +35,8 @@ int main()
         else if(cmd == 5)
             break;
 
-        std::cout << "EnterParamter (1~200) :\n" std::endl;
-        std::cin > param ;
+        std::cout << "EnterParamter (1~200) :\n" << std::endl;
+        std::cin >> param ;
         
         if( param < 1 || param > 200 )
         {

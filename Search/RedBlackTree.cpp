@@ -1,4 +1,7 @@
-#include "ReadBlackTree.h"
+#include <iostream>
+#include "RedBlackTree.h"
+
+extern RBNode* Nil;
 
 RBNode* createRBNode(int _data)
 {
@@ -24,6 +27,7 @@ void destroyRBNode(RBNode* rnode)
 
 void destroyRBTree(RBNode* tree)
 {
+    if(tree == NULL) return;
     if(tree == Nil) return;
 
     if(tree->left != Nil)
@@ -44,8 +48,8 @@ RBNode* searchRBNode(RBNode* tree, int target)
         return tree;
     
     if(tree->data < target)
-        return searchNode(tree->right, target);
-    else return searchNode(tree->left, target);
+        return searchRBNode(tree->right, target);
+    else return searchRBNode(tree->left, target);
 
     std::cout << "No data found: " << target << std::endl;
     return NULL;
@@ -105,7 +109,7 @@ void rotateLeft(RBNode** root, RBNode* parent)
             parent->parent->right = rightchild;
 
     rightchild->left = parent;
-    parent->parent = rightchild
+    parent->parent = rightchild;
 }
 
 /**
@@ -118,8 +122,8 @@ void insertNode(RBNode** tree, RBNode* nNode)
     insertNodeHelper(tree, nNode);
     
     nNode->color = RED;
-    nNdoe->right = Nil;
-    nNdoe->left = Nil;
+    nNode->right = Nil;
+    nNode->left = Nil;
 
     rebuildAfterInsert(tree, nNode);
 }
@@ -153,14 +157,14 @@ void insertNodeHelper(RBNode** tree, RBNode* nNode)
 }
 
 // Check and Repair Red Black Tree Rules.
-void rebuildAfterInsert(NODE** tree, NODE* x)
+void rebuildAfterInsert(RBNode** tree, RBNode* x)
 {
 
     while( x != (*tree) && x->parent->color == RED )
     {
         if( x->parent == x->parent->parent->left )
         {
-            NODE* uncle = x->parent->parent->right;
+            RBNode* uncle = x->parent->parent->right;
             
             if( uncle->color == RED )
             {
@@ -175,19 +179,19 @@ void rebuildAfterInsert(NODE** tree, NODE* x)
                 if( x == x->parent->right )
                 {
                     x = x->parent;
-                    RBT_rotateLeft(tree, x);
+                    rotateLeft(tree, x);
                 }
                 
                 x->parent->color = BLACK;
                 x->parent->parent->color = RED;
                 
-                RBT_rotateRight(tree, x->parent->parent);
+                rotateRight(tree, x->parent->parent);
 
             }
         }
         else
         {
-            NODE* uncle = x->parent->parent->left;
+            RBNode* uncle = x->parent->parent->left;
             
             if( uncle->color == RED )
             {
@@ -202,13 +206,13 @@ void rebuildAfterInsert(NODE** tree, NODE* x)
                 if( x == x->parent->left )
                 {
                     x = x->parent;
-                    RBT_rotateRight(tree, x);
+                    rotateRight(tree, x);
                 }
 
                 x->parent->color = BLACK;
                 x->parent->parent->color = RED;
 
-                RBT_rotateLeft(tree, x->parent->parent);
+                rotateLeft(tree, x->parent->parent);
             }
         }
     }
@@ -216,11 +220,11 @@ void rebuildAfterInsert(NODE** tree, NODE* x)
     (*tree)->color = BLACK;
 }
 
-RBNode* removeNode(RBNode** tree, int data)
+RBNode* removeNode(RBNode** root, int data)
 {
-    NODE* removed = NULL;
-    NODE* successor = NULL;
-    NODE* target = searchRBNode( (*root), data );
+    RBNode* removed = NULL;
+    RBNode* successor = NULL;
+    RBNode* target = searchRBNode( (*root), data );
 
     if(target == NULL)
         return NULL;
@@ -251,14 +255,14 @@ RBNode* removeNode(RBNode** tree, int data)
     }
 
     if(removed->color == BLACK)
-        RBT_rebuildAfterRemove(root, successor);
+        rebuildAfterRemove(root, successor);
     
     return removed;
 }
 
-void rebuildAfterRemove(RBNode** tree, RBNode* x)
+void rebuildAfterRemove(RBNode** root, RBNode* x)
 {
-    NODE* sibling = NULL;
+    RBNode* sibling = NULL;
     
     while( x->parent != NULL && x->color == BLACK )
     {
@@ -270,7 +274,7 @@ void rebuildAfterRemove(RBNode** tree, RBNode* x)
             {
                 sibling->color = BLACK;
                 x->parent->color = RED;
-                RBT_rotateLeft(root, x->parent);
+                rotateLeft(root, x->parent);
                 sibling = x->parent->right;
             }
             else
@@ -287,14 +291,14 @@ void rebuildAfterRemove(RBNode** tree, RBNode* x)
                         sibling->left->color = BLACK;
                         sibling->color = RED;
 
-                        RBT_rotateRight(root,sibling);
+                        rotateRight(root,sibling);
                         sibling = x->parent->right;
                     }
 
                     sibling->color = x->parent->color;
                     x->parent->color = BLACK;
                     sibling->right->color = BLACK;
-                    RBT_rotateLeft(root, x->parent);
+                    rotateLeft(root, x->parent);
                     x = (*root);
 
                 }
@@ -307,7 +311,7 @@ void rebuildAfterRemove(RBNode** tree, RBNode* x)
             {
                 sibling->color = BLACK;
                 x->parent->color = RED;
-                RBT_rotateRight(root, x->parent);
+                rotateRight(root, x->parent);
                 sibling = x->parent->left;
             }
             else
@@ -323,14 +327,14 @@ void rebuildAfterRemove(RBNode** tree, RBNode* x)
                     {
                         sibling->right->color = BLACK;
                         sibling->color = RED;
-                        RBT_rotateLeft(root, sibling);
+                        rotateLeft(root, sibling);
                         sibling = x->parent->left;
                     }
 
                     sibling->color = x->parent->color;
                     x->parent->color = BLACK;
                     sibling->left->color = BLACK;
-                    RBT_rotateRight(root, x->parent);
+                    rotateRight(root, x->parent);
                     x = (*root);
 
                 }
@@ -373,7 +377,7 @@ void printTree(RBNode* node, int depth, int blackCount)
     else
         std::cout << " " << std::endl;
    
-    RBT_printTree(node->left, depth+1, blackCount);
-    RBT_printTree(node->right, depth+1, blackCount);
-    
+    printTree(node->left, depth+1, blackCount);
+    printTree(node->right, depth+1, blackCount);
+
 }
