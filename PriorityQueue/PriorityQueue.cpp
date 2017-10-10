@@ -7,20 +7,19 @@ void HEAP::createNode( int _capacity )
 {
   usedSize = 0;
   capacity = _capacity;
-  node = new NODE[capacity];
+  node = (NODE*)malloc(sizeof(NODE)*capacity); 
 }
 
 void HEAP::destroy()
 {
-  delete []node;
-  usedSize = 0;
-  capacity = 0;
+  free(node);
 }
 
 void HEAP::enQueue( int _data )
 {
   int curPos = usedSize;
   int parentPos = getParent( curPos );
+    std::cout << "enQueue " <<  _data << std::endl;
   if( usedSize != capacity )
   {
     node[curPos]._data = _data; 
@@ -102,9 +101,10 @@ void HEAP::deQueue()
 void HEAP::PrintHeap()
 {
   unsigned int i = 0;
+std::cout << usedSize << std::endl;
   for( i; i < usedSize; i++ )
   {
-    std::cout << node[i]._data << " ";
+    std::cout << i << "data : " << node[i]._data << " ";
   }
   std::cout << " " << std::endl;
 }
