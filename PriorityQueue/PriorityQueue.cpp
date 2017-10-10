@@ -7,7 +7,7 @@ void HEAP::createNode( int _capacity )
 {
   usedSize = 0;
   capacity = _capacity;
-  node = (NODE*)malloc(sizeof(NODE)*capacity); 
+  node = (NODE*)malloc(sizeof(NODE)*(capacity)); 
 }
 
 void HEAP::destroy()
@@ -15,14 +15,13 @@ void HEAP::destroy()
   free(node);
 }
 
-void HEAP::enQueue( int _data )
+void HEAP::enQueue( int data )
 {
   int curPos = usedSize;
   int parentPos = getParent( curPos );
-    std::cout << "enQueue " <<  _data << std::endl;
   if( usedSize != capacity )
   {
-    node[curPos]._data = _data; 
+    node[curPos]._data = data; 
     while( curPos > 0 && node[curPos]._data < node[parentPos]._data )
     {
       swapNode( curPos, parentPos );
@@ -52,7 +51,7 @@ int HEAP::getLeftChild( int idx )
 
 int HEAP::getParent( int idx )
 {
-  return (2*idx) + 1;
+  return (int)((idx-1)/2);
 }
 
 void HEAP::deQueue()
@@ -64,7 +63,6 @@ void HEAP::deQueue()
   memset(&node[0], 0, sizeof(NODE));
   usedSize--;
   swapNode( 0, usedSize );
-
   LeftPos = getLeftChild( 0 );
   RightPos = LeftPos + 1;
   
@@ -75,7 +73,7 @@ void HEAP::deQueue()
     if( LeftPos >= usedSize ) break;
     if( RightPos >= usedSize ) 
     {
-      selectChild = RightPos;
+      selectChild = LeftPos;
     }
     else
     {
@@ -100,11 +98,10 @@ void HEAP::deQueue()
 
 void HEAP::PrintHeap()
 {
-  unsigned int i = 0;
-std::cout << usedSize << std::endl;
-  for( i; i < usedSize; i++ )
+  int i = 0;
+  for( i = 0; i < usedSize; i++ )
   {
-    std::cout << i << "data : " << node[i]._data << " ";
+    std::cout << node[i]._data << " ";
   }
   std::cout << " " << std::endl;
 }
