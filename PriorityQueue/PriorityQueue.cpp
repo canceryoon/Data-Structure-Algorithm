@@ -15,14 +15,14 @@ void HEAP::destroy()
   free(node);
 }
 
-void HEAP::enQueue( int data )
+void HEAP::enQueue( NODE _node )
 {
   int curPos = usedSize;
   int parentPos = getParent( curPos );
   if( usedSize != capacity )
   {
-    node[curPos]._data = data; 
-    while( curPos > 0 && node[curPos]._data < node[parentPos]._data )
+    node[curPos] = _node; 
+    while( curPos > 0 && node[curPos]._priority < node[parentPos]._priority )
     {
       swapNode( curPos, parentPos );
       curPos = parentPos;
@@ -77,13 +77,13 @@ void HEAP::deQueue()
     }
     else
     {
-      if( node[LeftPos]._data > node[RightPos]._data )
+      if( node[LeftPos]._priority > node[RightPos]._priority )
 	selectChild = RightPos;
       else
 	selectChild = LeftPos;
     }
 
-    if( node[selectChild]._data < node[parentPos]._data )
+    if( node[selectChild]._priority < node[parentPos]._priority )
     {
       swapNode( parentPos, selectChild );
       parentPos = selectChild;
@@ -101,7 +101,7 @@ void HEAP::PrintHeap()
   int i = 0;
   for( i = 0; i < usedSize; i++ )
   {
-    std::cout << node[i]._data << " ";
+    std::cout << node[i]._priority << " " << node[i]._data << " ";
   }
   std::cout << " " << std::endl;
 }

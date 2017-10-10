@@ -8,7 +8,8 @@
  */
 
 struct NODE{
-    int _data;
+    int _priority;
+    void* _data;
 };
 
 class HEAP{
@@ -21,7 +22,7 @@ public:
     HEAP(int _capacity){ createNode(_capacity); }
     void createNode(int _capacity);
     void destroy();
-    void enQueue( int _data );
+    void enQueue( NODE _node );
     void deQueue();
     void PrintHeap();
 
