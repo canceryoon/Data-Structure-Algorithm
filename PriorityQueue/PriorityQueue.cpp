@@ -51,6 +51,11 @@ int HEAP::getLeftChild( int idx )
   return (2*idx) + 1;
 }
 
+int HEAP::getParent( int idx )
+{
+  return (2*idx) + 1;
+}
+
 void HEAP::deQueue()
 {
   int parentPos = 0;
