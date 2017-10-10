@@ -53,7 +53,45 @@ int HEAP::getLeftChild( int idx )
 
 void HEAP::deQueue()
 {
+  int parentPos = 0;
+  int LeftPos = 0;
+  int RightPos = 0;
+  
+  memset(&node[0], 0, sizeof(NODE));
+  usedSize--;
+  swapNode( 0, usedSize );
 
+  LeftPos = getLeftChild( 0 );
+  RightPos = LeftPos + 1;
+  
+  while(1)
+  {
+    int selectChild = 0;
+    
+    if( LeftPos >= usedSize ) break;
+    if( RightPos >= usedSize ) 
+    {
+      selectChild = RightPos;
+    }
+    else
+    {
+      if( node[LeftPos]._data > node[RightPos]._data )
+	selectChild = RightPos;
+      else
+	selectChild = LeftPos;
+    }
+
+    if( node[selectChild]._data < node[parentPos]._data )
+    {
+      swapNode( parentPos, selectChild );
+      parentPos = selectChild;
+    }
+    else
+      break;
+
+    LeftPos = getLeftChild( parentPos );
+    RightPos = LeftPos + 1;
+  }
 }
 
 void HEAP::PrintHeap()
