@@ -1,4 +1,6 @@
 #include <iostream>
+#include <stdlib.h>
+#include <string.h>
 #include "PriorityQueue.h"
 
 void HEAP::createNode( int _capacity )
@@ -34,3 +36,33 @@ void HEAP::enQueue( int _data )
 
   std::cout << "Full Heap. (" << usedSize << ")" << std::endl;
 }
+
+void HEAP::swapNode( int idx1, int idx2 )
+{
+  NODE* tmp = (NODE*)malloc(sizeof(NODE));
+  memcpy(tmp, &node[idx1], sizeof(NODE) );
+  memcpy(&node[idx1], &node[idx2], sizeof(NODE) );
+  memcpy(&node[idx2], tmp, sizeof(NODE) );
+  free(tmp);
+}
+
+int HEAP::getLeftChild( int idx )
+{
+  return (2*idx) + 1;
+}
+
+void HEAP::deQueue()
+{
+
+}
+
+void HEAP::PrintHeap()
+{
+  unsigned int i = 0;
+  for( i; i < usedSize; i++ )
+  {
+    std::cout << node[i]._data << " ";
+  }
+  std::cout << " " << std::endl;
+}
+
