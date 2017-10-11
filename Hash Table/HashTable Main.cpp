@@ -3,6 +3,7 @@
 
 void printMenu()
 {
+	std::cout << " " << std::endl;
 	std::cout << "==== HASH TABLE ==== " << std::endl;
 	std::cout << "0. Exit" << std::endl;
 	std::cout << "1. Set Hash Table " << std::endl;
