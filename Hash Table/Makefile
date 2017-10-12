@@ -1,4 +1,6 @@
 # HASHTABLE
+# make HASHTABLE : Build normal Hash Table
+# make CHAININGHASH : Build chaining Hash Table
 
 CXX = g++
 
