@@ -6,6 +6,7 @@
 ChainHash::ChainHash( int _size ):tableSize(_size)
 {
   CH = (List*)malloc(sizeof(List) * _size);
+  memset(CH, 0, sizeof(List) * _size);
 }
 
 ChainHash::~ChainHash()
@@ -63,9 +64,11 @@ void ChainHash::setCH( char* _key, char* _value )
 {
   int addr = calculateKey( _key );
   Node* _inNode = createNode( _key, _value );
-
+  
   if( CH[addr] == NULL )
+  {
     CH[addr] = _inNode;
+  }
   else
   {
     List _tmp = CH[addr];
@@ -77,17 +80,16 @@ void ChainHash::setCH( char* _key, char* _value )
 void ChainHash::getCH( char* _key )
 {
   int addr = calculateKey( _key );
-  
-  if( CH[addr] == NULL )
+  List _tmp = CH[addr];
+  if( _tmp == NULL )
   {
     std::cout << _key << " has no data in hash table." << std::endl;
     return ;
   }
 
-  List _tmp = CH[addr];
   while(1)
   {
-    if( strcmp( _key, _tmp->_key ) )
+    if( strcmp( _key, _tmp->_key ) == 0 )
     {
       std::cout << _key << " has data: " << _tmp->_value << std::endl;
       return ;
