@@ -1,4 +1,6 @@
 #include <stdlib.h>
+#include <string.h>
+#include <iostream>
 #include "ChainingHash.h"
 
 ChainHash::ChainHash( int _size ):tableSize(_size)
@@ -35,7 +37,7 @@ void ChainHash::destroyNode( Node* _deNode )
   free(_deNode);
 }
 
-Node* createNode( char* _key, char* _value )
+Node* ChainHash::createNode( char* _key, char* _value )
 {
   Node* newNode = (Node*)malloc(sizeof(Node));
   newNode->_key = (char*)malloc(sizeof(char)*(strlen(_key)+1));
@@ -48,19 +50,19 @@ Node* createNode( char* _key, char* _value )
   return newNode;
 }
 
-itn calculateKey( char* _key )
+int ChainHash::calculateKey( char* _key )
 {
   int hashValue = 0;
   for(unsigned int i = 0; i < strlen(_key); i++)
     hashValue = (hashValue << 3) + _key[i];
 
-  return hashValue % tableSzie
+  return hashValue % tableSize;
 }
 
-void setCH( char* _key, char* _value )
+void ChainHash::setCH( char* _key, char* _value )
 {
   int addr = calculateKey( _key );
-  Node* _inNode = createNdoe( _key, _value );
+  Node* _inNode = createNode( _key, _value );
 
   if( CH[addr] == NULL )
     CH[addr] = _inNode;
@@ -72,7 +74,7 @@ void setCH( char* _key, char* _value )
   }
 }
 
-void getCH( char* _key )
+void ChainHash::getCH( char* _key )
 {
   int addr = calculateKey( _key );
   
@@ -82,18 +84,18 @@ void getCH( char* _key )
     return ;
   }
 
-  List _tmp = CH[addr]
+  List _tmp = CH[addr];
   while(1)
   {
-    if( strcmp( _key, _tmp[addr]->_key ) )
+    if( strcmp( _key, _tmp->_key ) )
     {
-      std::cout << _key << " has data: " << _tmp[addr]->_value << std::endl;
+      std::cout << _key << " has data: " << _tmp->_value << std::endl;
       return ;
     } 
     else
     {
-      if( _tmp[addr]->_next != NULL );
-        _tmp[addr] = _tmp[addr]->_next;	
+      if( _tmp->_next != NULL )
+        _tmp = _tmp->_next;	
       else
 	break;
     }
@@ -102,4 +104,4 @@ void getCH( char* _key )
   std::cout << _key << " has no data in hash table." << std::endl;
 }
 
-}
+
