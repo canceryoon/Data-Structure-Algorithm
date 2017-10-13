@@ -50,5 +50,56 @@ Node* createNode( char* _key, char* _value )
 
 itn calculateKey( char* _key )
 {
+  int hashValue = 0;
+  for(unsigned int i = 0; i < strlen(_key); i++)
+    hashValue = (hashValue << 3) + _key[i];
+
+  return hashValue % tableSzie
+}
+
+void setCH( char* _key, char* _value )
+{
+  int addr = calculateKey( _key );
+  Node* _inNode = createNdoe( _key, _value );
+
+  if( CH[addr] == NULL )
+    CH[addr] = _inNode;
+  else
+  {
+    List _tmp = CH[addr];
+    _inNode->_next = _tmp;
+    CH[addr] = _inNode;
+  }
+}
+
+void getCH( char* _key )
+{
+  int addr = calculateKey( _key );
   
+  if( CH[addr] == NULL )
+  {
+    std::cout << _key << " has no data in hash table." << std::endl;
+    return ;
+  }
+
+  List _tmp = CH[addr]
+  while(1)
+  {
+    if( strcmp( _key, _tmp[addr]->_key ) )
+    {
+      std::cout << _key << " has data: " << _tmp[addr]->_value << std::endl;
+      return ;
+    } 
+    else
+    {
+      if( _tmp[addr]->_next != NULL );
+        _tmp[addr] = _tmp[addr]->_next;	
+      else
+	break;
+    }
+  }
+
+  std::cout << _key << " has no data in hash table." << std::endl;
+}
+
 }
