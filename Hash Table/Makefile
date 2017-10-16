@@ -15,5 +15,12 @@ CHAININGHASH : ChainingHash.o
 
 ChainingHash.o :
 	$(CXX) -c ChainingHash.cpp
+
+OPENADDRHASH : OpenAddrHash.o
+	$(CXX) -o OpenAddrHash OpenAddrHash\ Main.cpp OpenAddrHash.o
+
+OpenAddrHash.o :
+	$(CXX) -c OpenAddrhash.cpp
+
 clean:
 	rm -rf *.o HashTable ChainingHash
