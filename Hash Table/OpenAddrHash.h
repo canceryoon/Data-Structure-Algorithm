@@ -28,9 +28,10 @@ public:
   HashTable(int size);
   ~HashTable();
 
-private:
   void set(char* _key, char* _value);
   void get(char* _key);
+
+private:
   int calculateAddr(char* _key);
   int calculateStep(char* _key);
   Node* ReHash();

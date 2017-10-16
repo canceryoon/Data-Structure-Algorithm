@@ -54,7 +54,6 @@ void HashTable::get(char* _key)
     }
     addr = (addr + step) % tableSize;
   }
-
   std::cout << _key << " has no data" << std::endl;
 }
 
@@ -70,11 +69,12 @@ void HashTable::set(char* _key, char* _value)
   while(table[addr]._Status == USING)
     addr = (addr + step) % tableSize;
 
+  table[addr]._Status = USING;
   table[addr]._key = (char*)malloc(sizeof(char)*(strlen(_key)+1));
   table[addr]._value = (char*)malloc(sizeof(char)*(strlen(_value)+1));
   strcpy(table[addr]._key, _key);
   strcpy(table[addr]._value, _value);
-
+  
   usingCnt++;
 }
 
