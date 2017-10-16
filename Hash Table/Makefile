@@ -20,7 +20,7 @@ OPENADDRHASH : OpenAddrHash.o
 	$(CXX) -o OpenAddrHash OpenAddrHash\ Main.cpp OpenAddrHash.o
 
 OpenAddrHash.o :
-	$(CXX) -c OpenAddrhash.cpp
+	$(CXX) -c OpenAddrHash.cpp
 
 clean:
-	rm -rf *.o HashTable ChainingHash
+	rm -rf *.o HashTable ChainingHash OpenAddrHash
