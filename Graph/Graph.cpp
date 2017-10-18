@@ -70,24 +70,28 @@ void addVertex( myGraph* g, myVertex* v )
       vl = vl->next;
     vl->next = v;
   }
+  v->idx = g->vertexCnt++;
 }
 
 void addEdge( myVertex* v, myEdge* e )
 {
   if( v->adjacencyList == NULL )
+  {
     v->adjacencyList = e;
+  }
   else
   {
-    while( v->adjacencyList->next != NULL )
-      v->adjacencyList = v->adjacencyList->next;
-    v->adjacencyList = e;
+    myEdge* _tmp = v->adjacencyList ;
+    while( _tmp->next != NULL )
+      _tmp = _tmp->next;
+    _tmp->next = e;
   }
 }
 
 void printGraph( myGraph* g )
 {
   myVertex* v = g->vertices;
-  myEdge* e = v->adjacencyList;
+  myEdge* e = NULL;
 
   if( v == NULL )
     return;
@@ -95,20 +99,19 @@ void printGraph( myGraph* g )
   while( v != NULL )
   {
     std::cout << v->data << " : " ;
-    if( e == NULL )
+    if( (e = v->adjacencyList) == NULL )
     {
       v = v->next;
-      std::cout << " " << std::endl;
       continue;
     }
 
     while( e != NULL )
     {
-      std::cout << e->to->data << "[" << e->wgt << "]" ;
+      std::cout << e->to->data << "[" << e->wgt << "] " ;
       e = e->next;
     }
 
-    std::cout << " " << std::endl;
     v = v->next;
+    std::cout << " " << std::endl;
   }
 }
