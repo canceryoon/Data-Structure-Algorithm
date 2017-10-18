@@ -1,6 +1,9 @@
 #ifndef GRAPH_H
 #define GRAPH_H
 
+#include <iostream>
+#include <stdlib.h>
+
 enum VisitMode
 {
   Visited,
@@ -13,22 +16,22 @@ typedef struct myvertex
   int visited;
   int idx;
 
-  struct Vertex* next;
-  struct Edge* adjacencyList;
+  struct myvertex* next;
+  struct myedge* adjacencyList;
 }myVertex;
 
 typedef struct myedge
 {
   int wgt;
-  struct Edge* next;
+  struct myedge* next;
   
-  Vertex* from;
-  Vertex* to;
+  myVertex* from;
+  myVertex* to;
 }myEdge;
 
 typedef struct mygraph
 {
-  Vertex* vertices;
+  myVertex* vertices;
   int vertexCnt;
 }myGraph;
 
