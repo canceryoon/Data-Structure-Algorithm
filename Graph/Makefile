@@ -11,11 +11,11 @@ GRAPH : Graph.o
 Graph.o :
 	$(CXX) -c Graph.cpp
 
-Linked Queue.o :
+Linked\ Queue.o :
 	$(CXX) -c Linked\ Queue.cpp
 
 Traversal.o :
 	$(CXX) -c Traversal.cpp 
 
 clean : 
-	rm -f *.o Graph TRAVERSAL
+	rm -f *.o Graph Traversal
