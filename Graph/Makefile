@@ -18,4 +18,4 @@ Traversal.o :
 	$(CXX) -c Traversal.cpp 
 
 clean : 
-	rm -f *.o Graph
+	rm -f *.o Graph TRAVERSAL
