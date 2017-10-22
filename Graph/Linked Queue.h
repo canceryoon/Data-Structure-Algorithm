@@ -39,6 +39,7 @@ public:
     void InQueue(myVertex* data);
     void DeQueue();
     void PrintQueue();
+    void IsEmpty();
 };
 
 void LQueue::InQueue(myVertex* data)
@@ -99,4 +100,9 @@ void LQueue::PrintQueue()
         pNode = pNode->next;
     }
     cout << endl;
+}
+
+void LQueue::IsEmpty()
+{
+  return ((front == NULL)? true : false);
 }
