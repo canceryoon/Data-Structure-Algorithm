@@ -16,3 +16,32 @@ void DFS( myVertex* v )
     E = E->next;
   }
 }
+
+void BFS( myVertex* v, LQueue* lq)
+{
+  myEdge* E = NULL;
+  cout << v->data << " " ;
+  
+  v->Visited = Visited;
+  lq->InQueue(v);
+
+  while( !lq->IsEmpty() )
+  {
+    Node* pop = lq->DeQueue();
+    v = pop->data;
+    E = v->adjacencyList;
+
+    while( E != NULL )
+    {
+      v = E->to;
+      if( v != NULL && v->Visited == NotVisited )
+      {
+	cout << v->data << " ";
+	v->Visited = Visited;
+	lq->InQueue(v);
+      }
+      E = E->next;
+    }
+  }
+  
+}
