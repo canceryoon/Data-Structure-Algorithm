@@ -37,9 +37,9 @@ public:
 	}
 
     void InQueue(myVertex* data);
-    void DeQueue();
+    Node* DeQueue();
     void PrintQueue();
-    void IsEmpty();
+    bool IsEmpty();
 };
 
 void LQueue::InQueue(myVertex* data)
@@ -61,15 +61,17 @@ void LQueue::InQueue(myVertex* data)
     cnt++;
 }
 
-void  LQueue::DeQueue()
+Node*  LQueue::DeQueue()
 {
     if(!cnt)
     {
         cout << "No data int LQueue" << endl;
         return ;
     }
+    Node* _front ; 
     if( cnt == 1 )
     {
+	_front = front;
 	free(front->_data);
         free(front);
         front = NULL;
@@ -77,12 +79,14 @@ void  LQueue::DeQueue()
     }
     else
     {
+	_front = front;
         Node* nfront = front->next;
 	free(front->_data);
         free(front);
         front = nfront;
     }
     cnt--;
+    return _front;
 }
 
 void LQueue::PrintQueue()
@@ -102,7 +106,7 @@ void LQueue::PrintQueue()
     cout << endl;
 }
 
-void LQueue::IsEmpty()
+bool LQueue::IsEmpty()
 {
   return ((front == NULL)? true : false);
 }
