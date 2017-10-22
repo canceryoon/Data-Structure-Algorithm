@@ -1,3 +1,6 @@
+#ifndef LINKED_QUEUE_H
+#define LINKED_QUEUE_H
+
 #include <iostream>
 #include <stdlib.h>
 #include <string.h>
@@ -65,8 +68,7 @@ Node*  LQueue::DeQueue()
 {
     if(!cnt)
     {
-        cout << "No data int LQueue" << endl;
-        return ;
+        return NULL;
     }
     Node* _front ; 
     if( cnt == 1 )
@@ -110,3 +112,5 @@ bool LQueue::IsEmpty()
 {
   return ((front == NULL)? true : false);
 }
+
+#endif

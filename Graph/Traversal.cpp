@@ -22,22 +22,22 @@ void BFS( myVertex* v, LQueue* lq)
   myEdge* E = NULL;
   cout << v->data << " " ;
   
-  v->Visited = Visited;
+  v->visited = Visited;
   lq->InQueue(v);
 
   while( !lq->IsEmpty() )
   {
     Node* pop = lq->DeQueue();
-    v = pop->data;
+    v = pop->_data;
     E = v->adjacencyList;
 
     while( E != NULL )
     {
       v = E->to;
-      if( v != NULL && v->Visited == NotVisited )
+      if( v != NULL && v->visited == NotVisited )
       {
 	cout << v->data << " ";
-	v->Visited = Visited;
+	v->visited = Visited;
 	lq->InQueue(v);
       }
       E = E->next;
