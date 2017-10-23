@@ -3,7 +3,7 @@
 void DFS( myVertex* v )
 {
   myEdge* E = NULL;
-  cout << v->data << " " ;
+  std::cout << v->data << " " ;
 
   v->visited = Visited;
   E = v->adjacencyList;
@@ -20,7 +20,7 @@ void DFS( myVertex* v )
 void BFS( myVertex* v, LQueue* lq)
 {
   myEdge* E = NULL;
-  cout << v->data << " " ;
+  std::cout << v->data << " " ;
   
   v->visited = Visited;
   lq->InQueue(v);
@@ -36,7 +36,7 @@ void BFS( myVertex* v, LQueue* lq)
       v = E->to;
       if( v != NULL && v->visited == NotVisited )
       {
-	cout << v->data << " ";
+	std::cout << v->data << " ";
 	v->visited = Visited;
 	lq->InQueue(v);
       }
@@ -45,3 +45,4 @@ void BFS( myVertex* v, LQueue* lq)
   }
   
 }
+

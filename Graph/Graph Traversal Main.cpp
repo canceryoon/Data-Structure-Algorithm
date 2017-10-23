@@ -39,8 +39,14 @@ int main()
   printGraph(g);
 
 
+  std::cout << "PRINT DFS" << std::endl;
   DFS(g->vertices);
+  std::cout << std::endl << "END DFS" << std::endl;
 
+  std::cout << "PRINT BFS" << std::endl;
+  LQueue lq;
+  BFS(g->vertices, &lq);
+  std::cout << std::endl << "END BFS" << std::endl;
   destroyGraph(g);
 
   return 1;
