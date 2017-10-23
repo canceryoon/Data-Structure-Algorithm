@@ -50,7 +50,7 @@ myEdge* createEdge( myVertex* _from, myVertex* _to, int _wgt )
   E->from = _from;
   E->to = _to;
   E->wgt = _wgt;
-
+  E->next = NULL;
   return E;
 }
 
