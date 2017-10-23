@@ -32,15 +32,14 @@ int main()
   addEdge(v4, createEdge(v4,v3,6));
   addEdge(v4, createEdge(v4,v2,7));
   addEdge(v4, createEdge(v4,v1,8));
-  
+
   addEdge(v5, createEdge(v5,v2,1));
   addEdge(v5, createEdge(v5,v3,1));
 
   printGraph(g);
 
-
   std::cout << "PRINT DFS" << std::endl;
-  DFS(g->vertices);
+//`  DFS(g->vertices);
   std::cout << std::endl << "END DFS" << std::endl;
 
   std::cout << "PRINT BFS" << std::endl;

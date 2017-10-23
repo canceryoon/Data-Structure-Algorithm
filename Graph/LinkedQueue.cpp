@@ -8,7 +8,7 @@ void LQueue::InQueue(myVertex* data)
     memcpy(node->_data, data, sizeof(myVertex));
     node->next = NULL;
 
-    if( !cnt )
+    if( cnt == 0 && front == NULL )
     {
         front = node;
     }
@@ -22,28 +22,18 @@ void LQueue::InQueue(myVertex* data)
 
 Node*  LQueue::DeQueue()
 {
-    if(!cnt)
+    Node* _front = front;
+    if( front->next == NULL )
     {
-        return NULL;
-    }
-    Node* _front ; 
-    if( cnt == 1 )
-    {
-	_front = front;
-	free(front->_data);
-        free(front);
-        front = NULL;
-        rear = NULL;
+      front = NULL;
+      rear = NULL;
     }
     else
     {
-	_front = front;
-        Node* nfront = front->next;
-	free(front->_data);
-        free(front);
-        front = nfront;
+      front = front->next;
     }
     cnt--;
+
     return _front;
 }
 

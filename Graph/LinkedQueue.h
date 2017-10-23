@@ -23,7 +23,6 @@ public:
 	
 	LQueue()
     { 
-      cout << "INIT LQ" << endl;
         cnt = 0;
         front = NULL;
         rear = NULL;

@@ -20,7 +20,7 @@ void DFS( myVertex* v )
 void BFS( myVertex* v, LQueue* lq)
 {
   myEdge* E = NULL;
-  std::cout << v->data << " " ;
+  std::cout << v->data << " : " ;
   
   v->visited = Visited;
   lq->InQueue(v);
