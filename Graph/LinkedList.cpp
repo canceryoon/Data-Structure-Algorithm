@@ -7,8 +7,7 @@ void insert(node* start, myVertex* x)
     if( !start )
     {
         node* _next = (node*)malloc(sizeof(node));
-				_next->val = (myVertex*)malloc(sizeof(myVertex));
-				memcpy(_next->val, x, sizeof(myVertex));
+				_next->val = x;
         _next->next = NULL;
         start = _next;
     }
@@ -19,8 +18,7 @@ void insert(node* start, myVertex* x)
             t = t->next;
         }
         node* _next = (node*)malloc(sizeof(node));
-				_next->val = (myVertex*)malloc(sizeof(myVertex));
-				memcpy(_next->val, x, sizeof(myVertex));
+				_next->val = x;
         _next->next = NULL;
         t->next = _next;
     }
