@@ -18,6 +18,7 @@ struct node
 typedef struct node node;
 
 void insert(node* start, myVertex* x);
+void insertNHead(node* oldH, node* newH);
 void select(node* start);
 void search(node* start, myVertex* x);
 void remove(node* start, myVertex* x);

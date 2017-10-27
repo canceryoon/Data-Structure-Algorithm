@@ -99,3 +99,14 @@ void update(node* start, myVertex* _x, myVertex* x)
     }
     if( flag ^ UPDATE_TRUE ) cout << "No data in node: " << _x << endl;   
 }
+
+void insertNHead(node** oldH, node* newH)
+{
+	if( oldH == NULL )
+		oldH = newH;
+	else
+	{
+		newH->next = *oldH;
+		(*oldH) = newH;
+	}
+}
