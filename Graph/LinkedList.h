@@ -15,10 +15,10 @@ struct node
     myVertex* val;
     node* next;
 };
-typedef struct node node;
+typedef struct node Node;
 
 void insert(node* start, myVertex* x);
-void insertNHead(node* oldH, node* newH);
+void insertNHead(node** oldH, node* newH);
 void select(node* start);
 void search(node* start, myVertex* x);
 void remove(node* start, myVertex* x);

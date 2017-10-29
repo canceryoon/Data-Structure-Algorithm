@@ -4,7 +4,7 @@
 #include "Graph.h"
 #include "LinkedList.h"
 
-void TopologicalSort( myVertex* v, Node* list);
-void TS_DFS( myVertex* v, Node* list);
+void TopologicalSort( myVertex* v, Node** list);
+void TS_DFS( myVertex* v, Node** list);
 
 #endif

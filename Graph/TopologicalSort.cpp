@@ -2,7 +2,7 @@
 
 using namespace std;
 
-void TopologicalSort( myVertex* v, Node* list)
+void TopologicalSort( myVertex* v, Node** list)
 {
 	while( v != NULL && v->visited != Visited )
 	{
@@ -11,7 +11,7 @@ void TopologicalSort( myVertex* v, Node* list)
 	}
 }
 
-void TS_DFS( myVertex* v, Node* list)
+void TS_DFS( myVertex* v, Node** list)
 {
 	Node* newHead = NULL;
 	myEdge* e = NULL;
@@ -27,7 +27,6 @@ void TS_DFS( myVertex* v, Node* list)
 		e = e->next;
 	}
 	
-	cout << v->data << endl;
 	newHead = (Node*)malloc(sizeof(Node));
 	newHead->val = v;
 	newHead->next = NULL;
