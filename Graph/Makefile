@@ -2,6 +2,9 @@
 
 CXX = g++
 
+MST : Graph.o PriorityQueue.o DisjointSet.o
+	$(CXX) -o MST MST\ Main.cpp Graph.o PriorityQueue.o
+
 TOPOLOGICALSORT : Graph.o LinkedList.o TopologicalSort.o
 	$(CXX) -o Topologicalsort TopologicalSort\ Main.cpp Graph.o LinkedList.o TopologicalSort.o
 
@@ -10,6 +13,12 @@ TRAVERSAL : Graph.o LinkedQueue.o Traversal.o
 
 GRAPH : Graph.o
 	$(CXX) -o Graph Graph\ Main.cpp Graph.o
+
+DisjointSet.o :
+	$(CXX) -c DisjointSet.cpp
+
+PriorityQueue.o :
+	$(CXX) -c PriorityQueue.cpp
 
 Traversal.o :
 	$(CXX) -c Traversal.cpp  
@@ -27,4 +36,4 @@ Graph.o :
 	$(CXX) -c Graph.cpp
 
 clean : 
-	rm -f *.o Graph Traversal Topologicalsort
+	rm -f *.o Graph Traversal Topologicalsort MST
