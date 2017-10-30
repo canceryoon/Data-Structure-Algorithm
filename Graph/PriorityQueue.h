@@ -23,7 +23,7 @@ public:
     void createNode(int _capacity);
     void destroy();
     void enQueue( NODE _node );
-    void deQueue();
+    void deQueue( NODE *pop);
     void PrintHeap();
 		bool isEmpty();
 protected:

@@ -54,12 +54,13 @@ int HEAP::getParent( int idx )
   return (int)((idx-1)/2);
 }
 
-void HEAP::deQueue()
+void HEAP::deQueue( NODE *pop )
 {
   int parentPos = 0;
   int LeftPos = 0;
   int RightPos = 0;
   
+	memcpy(pop, &node[0], sizeof(NODE));
   memset(&node[0], 0, sizeof(NODE));
   usedSize--;
   swapNode( 0, usedSize );
@@ -78,9 +79,9 @@ void HEAP::deQueue()
     else
     {
       if( node[LeftPos]._priority > node[RightPos]._priority )
-	selectChild = RightPos;
+				selectChild = RightPos;
       else
-	selectChild = LeftPos;
+				selectChild = LeftPos;
     }
 
     if( node[selectChild]._priority < node[parentPos]._priority )
