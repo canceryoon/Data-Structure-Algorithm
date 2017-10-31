@@ -103,7 +103,7 @@ void HEAP::PrintHeap()
   for( i = 0; i < usedSize; i++ )
   {
     std::cout << node[i]._priority; 
-    printf(" [%s] ", node[i]._data );
+    std::cout << node[i]._data->data << " " ;
   }
   std::cout << " " << std::endl;
 }

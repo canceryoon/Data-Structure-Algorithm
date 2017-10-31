@@ -2,14 +2,14 @@
 #define PRIORITY_QUEUE_H
 
 #include <iostream>
-
+#include "Graph.h"
 /*
  * implement Heap Class
  */
 
 struct NODE{
     int _priority;
-    void* _data;
+    myVertex* _data;
 };
 
 class HEAP{
