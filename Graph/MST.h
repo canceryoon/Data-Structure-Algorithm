@@ -4,6 +4,11 @@
 #include "Graph.h"
 #include "PriorityQueue.h"
 
-void prim( Graph *g, myVertex *startV, Graph *mst );
+#include <iostream>
+#include <stdlib.h>
+
+#define MAX_WGT 2048
+
+void prim( myGraph *g, myVertex *startV, myGraph *mst );
 
 #endif
