@@ -36,7 +36,7 @@ void prim( myGraph *g, myVertex *startV, myGraph *mst )
     NODE pop;
     pq.deQueue(&pop);
     
-    currentV = pop._data;
+    currentV = (myVertex*)pop._data;
     currentE = currentV->adjacencyList;
     f[currentV->idx] = currentV;
     

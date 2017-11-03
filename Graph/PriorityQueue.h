@@ -9,7 +9,7 @@
 
 struct NODE{
     int _priority;
-    myVertex* _data;
+    void * _data;
 };
 
 class HEAP{
@@ -24,8 +24,8 @@ public:
     void destroy();
     void enQueue( NODE _node );
     void deQueue( NODE *pop);
-    void PrintHeap();
-		bool isEmpty();
+//    void PrintHeap();
+    bool isEmpty();
 protected:
     void swapNode(int idx1, int idx2);
     int getParent(int idx);

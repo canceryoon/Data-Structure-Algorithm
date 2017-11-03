@@ -60,7 +60,7 @@ void HEAP::deQueue( NODE *pop )
   int LeftPos = 0;
   int RightPos = 0;
   
-	memcpy(pop, &node[0], sizeof(NODE));
+  memcpy(pop, &node[0], sizeof(NODE));
   memset(&node[0], 0, sizeof(NODE));
   usedSize--;
   swapNode( 0, usedSize );
@@ -79,9 +79,9 @@ void HEAP::deQueue( NODE *pop )
     else
     {
       if( node[LeftPos]._priority > node[RightPos]._priority )
-				selectChild = RightPos;
+	selectChild = RightPos;
       else
-				selectChild = LeftPos;
+	selectChild = LeftPos;
     }
 
     if( node[selectChild]._priority < node[parentPos]._priority )
@@ -97,6 +97,7 @@ void HEAP::deQueue( NODE *pop )
   }
 }
 
+/**
 void HEAP::PrintHeap()
 {
   int i = 0;
@@ -107,6 +108,7 @@ void HEAP::PrintHeap()
   }
   std::cout << " " << std::endl;
 }
+**/
 
 bool HEAP::isEmpty()
 {
