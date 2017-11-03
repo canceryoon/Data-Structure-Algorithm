@@ -64,7 +64,7 @@ void prim( myGraph *g, myVertex *startV, myGraph *mst )
     fIdx = p[i]->idx;
     tIdx = i;
     addEdge(MSTVertices[fIdx], createEdge(MSTVertices[fIdx], MSTVertices[tIdx], wgt[i]) );
-    addEdge(MSTVertices[tIdx], createEdge(MSTVertices[tIdx], MSTVertices[tIdx], wgt[i]) );
+    addEdge(MSTVertices[tIdx], createEdge(MSTVertices[tIdx], MSTVertices[fIdx], wgt[i]) );
   }
 
   free(wgt);
