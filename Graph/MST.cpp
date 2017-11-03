@@ -23,6 +23,7 @@ void prim( myGraph *g, myVertex *startV, myGraph *mst )
     wgt[i] = MAX_WGT;
     f[i] = NULL;
     p[i] = NULL;
+    MSTVertices[i] = newV;
     currentV = currentV->next;
     i++;
   }
