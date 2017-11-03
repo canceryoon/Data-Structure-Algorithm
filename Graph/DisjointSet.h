@@ -1,7 +1,8 @@
-#include<iostream>
-
 #ifndef DISJOINTSET_H
 #define DISJOINTSET_H
+
+#include<iostream>
+#include<stdlib.h>
 
 struct DisjointSet{
     DisjointSet* parent;
