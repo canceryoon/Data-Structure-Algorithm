@@ -10,5 +10,6 @@
 #define MAX_WGT 2048
 
 void prim( myGraph *g, myVertex *startV, myGraph *mst );
+void kruskal( myGraph *g, myGraph *mst );
 
 #endif

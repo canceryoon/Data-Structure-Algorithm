@@ -72,3 +72,8 @@ void prim( myGraph *g, myVertex *startV, myGraph *mst )
   free(f);
   free(p);
 }
+
+void kruskal( myGraph *g, myGraph *mst )
+{
+
+}
