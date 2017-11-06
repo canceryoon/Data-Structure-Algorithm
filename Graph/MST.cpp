@@ -75,5 +75,56 @@ void prim( myGraph *g, myVertex *startV, myGraph *mst )
 
 void kruskal( myGraph *g, myGraph *mst )
 {
+  int i = 0;
+  myVertex *currentV = NULL;
+  myVertex **mstV = (myVertex**)malloc(sizeof(myVertex*)*g->vertexCnt);
+  DisjointSet **vSet = (DisjointSet**)malloc(sizeof(DisjointSet*)*g->vertexCnt);
+  HEAP pq(10);
 
+  currentV = g->vertices;
+  while( currentV != NULL )
+  {
+    myEdge *currentE;
+
+    vSet[i] = DS_MakeSet(currentV);
+    mstV[i] = createVertex(currentV->data);
+    addVertex(&mst, mstV[i]);
+
+    currentE = currentV->adjacencyList;
+    while( currentE != NULL )
+    {
+      NODE nNode = { currentE->wgt, currentE };
+      pq.enQueue(nNode);
+      currentE = currentE->next;
+    }
+
+    i++;
+    currentV = currentV->next;
+  }
+
+  while( !pq.isEmpty() )
+  {
+    myEdge *currentE;
+    int fIdx, tIdx;
+    NODE pop;
+
+    pq.deQueue(&pop);
+    currentE = (myEdge*)pop->data;
+    fIdx = currentE->from->idx;
+    tidx = currentE->to->idx;
+
+    if( DS_FindSet(vSet[fIdx]) != DS_FindSet(vSet[tIdx]) )
+    {
+      addEdge(mstV[fIdx], createEdge(mstV[fIdx], mstV[tIdx], currentE->wgt));
+      addEdge(mstV[tIdx], createEdge(mstV[tIdx], mstV[fIdx], currentE->wgt));
+      DS_UnionSet( vSet[fIdx], vSet[tIdx] );
+    }
+  }
+
+  for(i = 0; i < g->vertexCnt; i++)
+    DS_DestroySet(vSet[i]);
+
+  free(mstV);
+  free(vSet);
+  
 }
