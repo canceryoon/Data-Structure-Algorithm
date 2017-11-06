@@ -79,6 +79,7 @@ int main()
 
   destroyGraph(g);
   destroyGraph(primMST);
+  destroyGraph(kruskalMST);
 
   return 1;
 }

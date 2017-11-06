@@ -67,6 +67,13 @@ void prim( myGraph *g, myVertex *startV, myGraph *mst )
     addEdge(MSTVertices[tIdx], createEdge(MSTVertices[tIdx], MSTVertices[fIdx], wgt[i]) );
   }
 
+  while( !pq.isEmpty() )
+  {
+    NODE *pop;
+    pq.deQueue(pop);
+    free(pop);
+  }
+
   free(wgt);
   free(MSTVertices);
   free(f);
@@ -79,7 +86,7 @@ void kruskal( myGraph *g, myGraph *mst )
   myVertex *currentV = NULL;
   myVertex **mstV = (myVertex**)malloc(sizeof(myVertex*)*g->vertexCnt);
   DisjointSet **vSet = (DisjointSet**)malloc(sizeof(DisjointSet*)*g->vertexCnt);
-  HEAP pq(10);
+  HEAP pq(50);
 
   currentV = g->vertices;
   while( currentV != NULL )
@@ -124,7 +131,13 @@ void kruskal( myGraph *g, myGraph *mst )
   for(i = 0; i < g->vertexCnt; i++)
     DS_DestroySet(vSet[i]);
 
+  while( !pq.isEmpty() )
+  {
+    NODE *pop;
+    pq.deQueue(pop);
+    free(pop);
+  }
+
   free(mstV);
   free(vSet);
-  
 }
