@@ -8,6 +8,7 @@ int main()
 {
   myGraph *g = createGraph();
   myGraph *primMST = createGraph();
+  myGraph *kruskalMST = createGraph();
 
   myVertex *v1 = createVertex(1);
   myVertex *v2 = createVertex(2);
@@ -71,6 +72,10 @@ int main()
   prim(g, v2, primMST);
   printGraph(primMST);
 
+  cout << "Kruskal Algorithm " << endl;
+  kruskal(g, kruskalMST);
+  printGraph(kruskalMST);
+  puts("");
 
   destroyGraph(g);
   destroyGraph(primMST);
