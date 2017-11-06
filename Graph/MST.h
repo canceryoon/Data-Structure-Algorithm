@@ -3,6 +3,7 @@
 
 #include "Graph.h"
 #include "PriorityQueue.h"
+#include "DisjointSet.h"
 
 #include <iostream>
 #include <stdlib.h>
