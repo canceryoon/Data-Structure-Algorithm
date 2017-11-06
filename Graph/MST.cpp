@@ -88,7 +88,7 @@ void kruskal( myGraph *g, myGraph *mst )
 
     vSet[i] = DS_MakeSet(currentV);
     mstV[i] = createVertex(currentV->data);
-    addVertex(&mst, mstV[i]);
+    addVertex(mst, mstV[i]);
 
     currentE = currentV->adjacencyList;
     while( currentE != NULL )
@@ -109,9 +109,9 @@ void kruskal( myGraph *g, myGraph *mst )
     NODE pop;
 
     pq.deQueue(&pop);
-    currentE = (myEdge*)pop->data;
+    currentE = (myEdge*)pop._data;
     fIdx = currentE->from->idx;
-    tidx = currentE->to->idx;
+    tIdx = currentE->to->idx;
 
     if( DS_FindSet(vSet[fIdx]) != DS_FindSet(vSet[tIdx]) )
     {

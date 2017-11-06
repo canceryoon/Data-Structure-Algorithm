@@ -3,7 +3,7 @@
 CXX = g++
 
 MST : Graph.o PriorityQueue.o DisjointSet.o MST.o
-	$(CXX) -o MST MST\ Main.cpp Graph.o PriorityQueue.o MST.o
+	$(CXX) -o MST MST\ Main.cpp Graph.o PriorityQueue.o DisjointSet.o MST.o
 
 TOPOLOGICALSORT : Graph.o LinkedList.o TopologicalSort.o
 	$(CXX) -o Topologicalsort TopologicalSort\ Main.cpp Graph.o LinkedList.o TopologicalSort.o
