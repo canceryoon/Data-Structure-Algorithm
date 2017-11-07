@@ -2,6 +2,9 @@
 
 CXX = g++
 
+Dijkstra :
+	$(CXX) -o DIJKSTRA Dijkstra\ Main.cpp Graph.o PriorityQueue.o Diskstra.o
+
 MST : Graph.o PriorityQueue.o DisjointSet.o MST.o
 	$(CXX) -o MST MST\ Main.cpp Graph.o PriorityQueue.o DisjointSet.o MST.o
 
@@ -16,6 +19,9 @@ GRAPH : Graph.o
 
 MST.o :
 	$(CXX) -c MST.cpp
+
+Dijkstra.o :
+	$(CXX) -c Dijkstra.cpp
 
 DisjointSet.o :
 	$(CXX) -c DisjointSet.cpp
