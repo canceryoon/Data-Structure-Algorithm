@@ -4,7 +4,7 @@ void Dijkstra(myGraph *g, myVertex *startV, myGraph *mst)
 {
 	unsigned int i = 0;
 	NODE startNode = { 0, startV };
-	HEAP PQ(10);
+	HEAP PQ(50);
 
 	myVertex *curV = NULL;
 	myEdge *curE = NULL;
@@ -27,6 +27,7 @@ void Dijkstra(myGraph *g, myVertex *startV, myGraph *mst)
 	}
 
 	PQ.enQueue(startNode);
+	wgt[startV->idx] = 0;
 	while( !PQ.isEmpty() )
 	{
 		NODE pop;
