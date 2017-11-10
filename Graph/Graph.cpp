@@ -102,6 +102,7 @@ void printGraph( myGraph* g )
     if( (e = v->adjacencyList) == NULL )
     {
       v = v->next;
+			std::cout << " " << std::endl;
       continue;
     }
 
