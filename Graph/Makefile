@@ -3,7 +3,7 @@
 CXX = g++
 
 Dijkstra :
-	$(CXX) -o DIJKSTRA Dijkstra\ Main.cpp Graph.o PriorityQueue.o Diskstra.o
+	$(CXX) -o DIJKSTRA Dijkstra\ Main.cpp Graph.o PriorityQueue.o Dijkstra.o
 
 MST : Graph.o PriorityQueue.o DisjointSet.o MST.o
 	$(CXX) -o MST MST\ Main.cpp Graph.o PriorityQueue.o DisjointSet.o MST.o
