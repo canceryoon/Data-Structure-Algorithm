@@ -7,3 +7,6 @@ BruteForce : BruteForce.o
 
 BruteForce.o :
 	$(CXX) -c BruteForce.cpp
+
+clean : 
+	rm -rf *.o BruteForce
