@@ -3,7 +3,7 @@
 #include <math.h>
 
 using namespace std;
-int KarpRarbin( char *text, char *pattern, int st, int patternLen, int textLen )
+int KarpRabin( char *text, char *pattern, int st, int patternLen, int textLen )
 {
   int i = st;
   int j = 0;

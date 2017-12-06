@@ -36,7 +36,7 @@ int main(int argc, char **argv)
 
   while( fgets( text, MAX_BUFFER, fpx) != NULL )
   {
-    int pos = KarpRarbin( text, pattern, 0, strlen(pattern), strlen(text) );
+    int pos = KarpRabin( text, pattern, 0, strlen(pattern), strlen(text) );
     line += 1;
     if( pos >= 0 )
     {
