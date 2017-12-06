@@ -1,19 +1,14 @@
 #include "KarpRabin.h"
 #include <iostream>
 #include <math.h>
-#include <string.h>
 
 using namespace std;
-int KarpRarbin( char *text, char *pattern, int st)
+int KarpRarbin( char *text, char *pattern, int st, int patternLen, int textLen )
 {
   int i = st;
   int j = 0;
 
-  int patternLen = strlen(pattern);
-  int textLen = strlen(text);
-
   int coefficient = pow(2, patternLen - 1);
-  cout << "patternLen: " << patternLen << endl;
 
   int hashText = hash(text, patternLen);
   int hashPattern = hash(pattern, patternLen);
