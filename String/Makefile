@@ -15,5 +15,10 @@ KarpRabin : KarpRabin.o
 KarpRabin.o :
 	$(CXX) -c KarpRabin.cpp
 
+KMP : KnuthMorrisPratt.o
+	$(CXX) -o KMP KMP\ Main.cpp KnuthMorrisPratt.o
+
+KnuthMorrisPratt.o :
+	$(CXX) -c KnuthMorrisPratt.cpp 
 clean : 
-	rm -rf *.o BruteForce
+	rm -rf *.o BruteForce KarpRabin KMP
