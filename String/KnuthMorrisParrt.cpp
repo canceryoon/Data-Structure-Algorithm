@@ -13,3 +13,9 @@ void preprocess(char *pt, int ptLen, int *border)
 		border[i] = j;
 	}
 }
+
+int knutmorrispratt(char *text, int textLen, int st, char *pt, int ptLen)
+{
+
+	return -1;
+}
