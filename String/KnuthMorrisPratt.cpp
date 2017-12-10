@@ -14,7 +14,7 @@ void preprocess(char *pt, int ptLen, int *border)
 	}
 }
 
-int knutmorrispratt(char *text, int textLen, int st, char *pt, int ptLen)
+int knuthmorrispratt(char *text, int textLen, int st, char *pt, int ptLen)
 {
 	int i = st;
 	int j = 0;
