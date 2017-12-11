@@ -1,5 +1,8 @@
 #include "KnuthMorrisPratt.h"
 
+#include <string.h>
+#include <stdio.h>
+
 #define MAX_BUFFER 512
 
 using namespace std;
