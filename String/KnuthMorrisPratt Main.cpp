@@ -1,3 +1,7 @@
+#ifdef _MSC_VER
+#define _CRT_SECURE_NO_WARNINGS
+#endif
+
 #include "KnuthMorrisPratt.h"
 
 #include <string.h>
@@ -8,7 +12,7 @@
 using namespace std;
 int main(int argc, char **argv)
 {
-	char *filePath;
+	const char *filePath;
 	FILE *fpx;
 
 	char text[MAX_BUFFER];
@@ -35,7 +39,7 @@ int main(int argc, char **argv)
 
 	while (fgets(text, MAX_BUFFER, fpx) != NULL)
 	{
-		int pos = knuthmorrispratt(text, strlen(text), 0, pattern, strlen(pattern));
+		int pos = knuthmorrispratt(text, (int)strlen(text), 0, pattern, (int)strlen(pattern));
 		line += 1;
 		if (pos >= 0)
 		{
