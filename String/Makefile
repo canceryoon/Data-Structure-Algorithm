@@ -20,5 +20,12 @@ KMP : KnuthMorrisPratt.o
 
 KnuthMorrisPratt.o :
 	$(CXX) -c KnuthMorrisPratt.cpp 
+
+BM : BoyerMoore.o
+	$(CXX) -o BM BM\ Main.cpp BoyerMoore.o
+
+BoyerMoore.o :
+	$(CXX) -c BoyerMoore.cpp
+
 clean : 
 	rm -rf *.o BruteForce KarpRabin KMP
