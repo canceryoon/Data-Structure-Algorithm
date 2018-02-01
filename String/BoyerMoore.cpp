@@ -24,9 +24,9 @@ int BoyerMoore(char *text, int textLen, char *pt, int ptLen, int _st)
 			pos = st;
 			break;
 		}
-		st += std::max(gst[i + 1], i - bct[text[st + i]]);
+		else
+			st += std::max(gst[i + 1], i - bct[text[st + i]]);
 	}
-
 	
 	free(suffix);
 	free(gst);
@@ -46,10 +46,11 @@ void MakeGST(char *pt, int ptLen, int *suffix, int *gst)
 		{
 			if(gst[j] == 0)
 				gst[j] = j - i;
-			j = suffix[i];
+			j = suffix[j];
 		}
 		i--;
 		j--;
+		suffix[i] = j;
 	}
 
 	j = suffix[0];
