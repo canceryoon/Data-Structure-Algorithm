@@ -22,7 +22,7 @@ KnuthMorrisPratt.o :
 	$(CXX) -c KnuthMorrisPratt.cpp 
 
 BM : BoyerMoore.o
-	$(CXX) -o BM BM\ Main.cpp BoyerMoore.o
+	$(CXX) -o BM BoyerMoore\ Main.cpp BoyerMoore.o
 
 BoyerMoore.o :
 	$(CXX) -c BoyerMoore.cpp
